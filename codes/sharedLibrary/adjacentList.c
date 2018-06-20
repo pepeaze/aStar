@@ -114,8 +114,12 @@ void readParameters (int argc, char **argv){
         }
         else if(strcmp(argv[2],"-RO")==0)
             strcpy(graph_folder,"../../instances/distanceGraphs/rome99.gr");
-        else if(strcmp(argv[2],"-TES")==0)
+        else if(strcmp(argv[2],"-TES")==0){
             strcpy(graph_folder,"../../instances/teste/graph.gr");
+            strcpy(coord_folder,"../../instances/coordinates/test.co");
+            strcpy(visited_coordinates_folder, "../../instances/coordinates/test.Visited");
+            strcpy(path_coordinates_folder, "../../instances/coordinates/test.Path");
+        }
     }
 
     else if(strcmp(argv[1],"-t")==0){
@@ -145,8 +149,12 @@ void readParameters (int argc, char **argv){
         }
         else if(strcmp(argv[2],"-RO")==0)
             strcpy(graph_folder,"../../instances/distanceGraphs/rome99.gr");
-        else if(strcmp(argv[2],"-TES")==0)
+        else if(strcmp(argv[2],"-TES")==0){
             strcpy(graph_folder,"../../instances/teste/graph.gr");
+            strcpy(coord_folder,"../../instances/coordinates/test.co");
+            strcpy(visited_coordinates_folder, "../../instances/coordinates/test.Visited");
+            strcpy(path_coordinates_folder, "../../instances/coordinates/test.Path");
+        }
     }
 
     strcpy(data_structure_type, argv[3]);

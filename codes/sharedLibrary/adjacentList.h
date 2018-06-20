@@ -45,9 +45,11 @@ typedef struct{
     int *distancia;
     int *anterior;
     int *closed_set;
+    int *open_set;
     int *fechado;
     int path_g_n;
     int closed_set_size;
+    int open_set_size;
 }t_graph_info;
 
 typedef struct{

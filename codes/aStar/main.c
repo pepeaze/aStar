@@ -87,8 +87,14 @@ void get_paths(t_path *path, char **argv){
         }
         else if(strcmp(argv[2],"-RO")==0)
             strcpy(graph_folder,"../../instances/distanceGraphs/rome99.gr");
-        else if(strcmp(argv[2],"-TES")==0)
-            strcpy(graph_folder,"../../instances/teste/graph.gr");
+        else if(strcmp(argv[2],"-TES")==0){
+            path[0].src = 0;
+            path[0].dest = 8;
+            path[1].src = 0;
+            path[1].dest = 8;
+            path[2].src = 0;
+            path[2].dest = 8;
+        }
     }
 
     else if(strcmp(argv[1],"-t")==0){
@@ -126,8 +132,14 @@ void get_paths(t_path *path, char **argv){
         }
         else if(strcmp(argv[2],"-RO")==0)
             strcpy(graph_folder,"../../instances/distanceGraphs/rome99.gr");
-        else if(strcmp(argv[2],"-TES")==0)
-            strcpy(graph_folder,"../../instances/teste/graph.gr");
+        else if(strcmp(argv[2],"-TES")==0){
+            path[0].src = 0;
+            path[0].dest = 8;
+            path[1].src = 0;
+            path[1].dest = 8;
+            path[2].src = 0;
+            path[2].dest = 8;
+        }
     }
 }
 
@@ -169,6 +181,7 @@ void save_path_coordinates_file(t_graph_info a_star_results, t_coords *coords, i
     while(i != 0){
         fprintf(f,"%c %d %d %d\n",coords[i].v, coords[i].vertex, coords[i].x, coords[i].y);
         i = a_star_results.anterior[i];
+        printf("path: %d", i); getchar();
     }
     fclose(f);
 }
@@ -242,7 +255,7 @@ int main(int argc, char **argv){
 
     get_paths(path, argv);
     adjacent_list = get_adjacent_list(adjacent_list, graph_size, f, argv);
-    if(strcmp(argv[2], "-RO") != 0 && strcmp(argv[2], "-TES") != 0)
+    if(strcmp(argv[2], "-RO") != 0)
         coords = read_coordinates_from_file(f1,graph_size);
 
 
@@ -273,7 +286,7 @@ int main(int argc, char **argv){
             double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
             //printf("Distance from %d to %d vertex: %d\n", path[i].src+1, path[i].dest+1,dijkstra_results.distancia[path[i].dest]);
             show_time_spent(time_spent);
-            if(strcmp(argv[2], "-RO") != 0 && strcmp(argv[2], "-TES") != 0){
+            if(strcmp(argv[2], "-RO") != 0){
                     //save_visited_coordinates_file(dijkstra_results,coords,graph_size, i);
                     save_path_coordinates_file(a_star_results,coords,graph_size, path[i].dest, i);
                 }
