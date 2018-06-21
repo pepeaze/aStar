@@ -89,11 +89,11 @@ void get_paths(t_path *path, char **argv){
             strcpy(graph_folder,"../../instances/distanceGraphs/rome99.gr");
         else if(strcmp(argv[2],"-TES")==0){
             path[0].src = 0;
-            path[0].dest = 8;
+            path[0].dest = 15;
             path[1].src = 0;
-            path[1].dest = 8;
+            path[1].dest = 15;
             path[2].src = 0;
-            path[2].dest = 8;
+            path[2].dest = 15;
         }
     }
 
@@ -134,16 +134,16 @@ void get_paths(t_path *path, char **argv){
             strcpy(graph_folder,"../../instances/distanceGraphs/rome99.gr");
         else if(strcmp(argv[2],"-TES")==0){
             path[0].src = 0;
-            path[0].dest = 8;
+            path[0].dest = 15;
             path[1].src = 0;
-            path[1].dest = 8;
+            path[1].dest = 15;
             path[2].src = 0;
-            path[2].dest = 8;
+            path[2].dest = 15;
         }
     }
 }
 
-void save_visited_coordinates_file(t_graph_info dijkstra_results, t_coords *coords, int graph_size, int path){
+void save_visited_coordinates_file(t_graph_info a_star_results, t_coords *coords, int graph_size, int path){
     FILE *f;
     if(path == 0)
         strcat(visited_coordinates_folder, ".1");
@@ -154,10 +154,8 @@ void save_visited_coordinates_file(t_graph_info dijkstra_results, t_coords *coor
 
     f = fopen(visited_coordinates_folder, "w");
     int i;
-    for(i=0; i<graph_size; i++){
-        if(dijkstra_results.fechado[i] == 1){
-            fprintf(f,"%c %d %d %d\n",coords[i].v, coords[i].vertex, coords[i].x, coords[i].y);
-        }
+    for(i=0; i<a_star_results.closed_set_size; i++){
+        fprintf(f,"%c %d %d %d\n",coords[a_star_results.closed_set[i]].v, coords[a_star_results.closed_set[i]].vertex, coords[a_star_results.closed_set[i]].x, coords[a_star_results.closed_set[i]].y);
     }
     fclose(f);
 
@@ -179,10 +177,12 @@ void save_path_coordinates_file(t_graph_info a_star_results, t_coords *coords, i
 
     }*/
     while(i != 0){
+       // printf("path: %d", i+1); getchar();
         fprintf(f,"%c %d %d %d\n",coords[i].v, coords[i].vertex, coords[i].x, coords[i].y);
         i = a_star_results.anterior[i];
-        printf("path: %d", i); getchar();
     }
+    fprintf(f,"%c %d %d %d\n",coords[i].v, coords[i].vertex, coords[i].x, coords[i].y);
+    //printf("path: %d", i+1); getchar();
     fclose(f);
 }
 
@@ -287,7 +287,7 @@ int main(int argc, char **argv){
             //printf("Distance from %d to %d vertex: %d\n", path[i].src+1, path[i].dest+1,dijkstra_results.distancia[path[i].dest]);
             show_time_spent(time_spent);
             if(strcmp(argv[2], "-RO") != 0){
-                    //save_visited_coordinates_file(dijkstra_results,coords,graph_size, i);
+                    save_visited_coordinates_file(a_star_results,coords,graph_size, i);
                     save_path_coordinates_file(a_star_results,coords,graph_size, path[i].dest, i);
                 }
         }

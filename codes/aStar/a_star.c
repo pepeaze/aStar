@@ -49,7 +49,8 @@ t_graph_info add_vertex_to_open_set(t_graph_info r, int vertex_id){
 }
 
 float h_n (int vertex_id, int vertex_end, t_coords *coords){
-    return coords[vertex_id].x;//( sqrt ( pow(coords[vertex_end].x-coords[vertex_id].x,2) + pow(coords[vertex_end].y-coords[vertex_id].y,2) ) );
+    //return coords[vertex_id].x;
+    return( sqrt ( pow(coords[vertex_end].x-coords[vertex_id].x,2) + pow(coords[vertex_end].y-coords[vertex_id].y,2) ) );
 }
 
 t_l *insere_ordenado (t_l *open_set, t_o_set o){
@@ -97,9 +98,9 @@ t_graph_info a_star(t_graph** adjacent_list, t_coords *coords, int graph_size, i
     int *is_in_open_set;
     int *g_score;
     float *f_score;
-    int menor = INT_MAX;
+    int menor = 10000000;
     int iter = 0;
-
+    int inf = 1000000;
     r.fechado = alloc_array(graph_size);
     r.anterior = alloc_array(graph_size);
     g_score = alloc_array(graph_size);
@@ -113,17 +114,14 @@ t_graph_info a_star(t_graph** adjacent_list, t_coords *coords, int graph_size, i
         if(i == vertex_ini)
             g_score[i] = 0;
         else
-            g_score[i] = INT_MAX/3;
+            g_score[i] = inf;
     }
 
     for(i = 0; i<graph_size; i++){
-        f_score[i] = INT_MAX/3;
+        f_score[i] = inf;
     }
 
     for(i = 0; i<graph_size; i++){
-        if(i == vertex_ini)
-            r.fechado[i] = 1;
-        else
             r.fechado[i] = 0;
     }
 
@@ -155,22 +153,26 @@ t_graph_info a_star(t_graph** adjacent_list, t_coords *coords, int graph_size, i
             r = add_vertex_to_closed_set(r, current);
 
         }*/
-        printf("gscore:\n");
+        /*printf("gscore:\n");
         for(i=0; i<graph_size;i++){
             printf("%d ", g_score[i]);
-        }
-        printf("\nfscore:\n");
+        }*/
+        //printf("\nfscore:\n");
         for(i=0; i<graph_size;i++){
-            printf("%.f ", f_score[i]);
-            if(menor>=f_score[i] && r.open_set[i] != INT_MAX/2){
+            //printf("%.f ", f_score[i]);
+            if(menor>=f_score[i] && r.fechado[i] != 1){
                 menor = f_score[i];
                 current = i;
             }
         }
-        printf("\ncurrent: %d\n", current+1);
+        /*printf("\nanterior:\n");
+        for(i=0; i<graph_size;i++){
+            printf("%d ", r.anterior[i]);
+        }
+        printf("\ncurrent: %d\n", current+1);*/
         r.fechado[current] = 1;
-        r.open_set[current] = INT_MAX/2;
-        printf("current has now: %d value\n", r.open_set[current]); getchar();
+        r.open_set[current] = inf;
+        //printf("current has now: %d value\n", r.open_set[current]); getchar();
         r = add_vertex_to_closed_set(r, current);
         t_graph* p;
         for(p = adjacent_list[current]; p!=NULL; p = p->prox){
@@ -185,13 +187,7 @@ t_graph_info a_star(t_graph** adjacent_list, t_coords *coords, int graph_size, i
             }
 
             int tentative_g_score = 0;
-            if (current == 2){
-                printf("tentative_g_score = %d + %d = ", g_score[current], p->cost);
-            }
             tentative_g_score = g_score[current]+p->cost;
-            if (current==2){
-                printf("%d\n",tentative_g_score);
-            }
             if(tentative_g_score >= g_score[p->vertex])
                 continue;
 
