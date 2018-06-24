@@ -1,57 +1,57 @@
 #!/bin/bash
-echo NY distance:
-./dijkstra -d -NY -h
-echo
-echo NY time:
-./dijkstra -t -NY -h
-echo
-echo
-echo BAY distance:
-./dijkstra -d -BAY -h
-echo
-echo BAY time:
-./dijkstra -t -BAY -h
-echo
-echo
-echo COL distance:
-./dijkstra -d -COL -h
-echo
-echo COL time:
-./dijkstra -t -COL -h
-echo
-echo
-echo FLA distance:
-./dijkstra -d -FLA -h
-echo
+#echo NY distance:
+#./astar -d -NY -v
+#echo
+#echo NY time:
+#./astar -t -NY -v
+#echo
+#echo
+#echo BAY distance:
+#./astar -d -BAY -v
+#echo
+#echo BAY time:
+#./astar -t -BAY -v
+#echo
+#echo
+#echo COL distance:
+#./astar -d -COL -v
+#echo
+#echo COL time:
+#./astar -t -COL -v
+#echo
+#echo
+#echo FLA distance:
+#./astar -d -FLA -v
+#echo
 echo FLA time:
-./dijkstra -t -FLA -h
+./astar -t -FLA -v
 echo
 echo
 #echo BAY distance heap:
-#time ./dijkstra -d -BAY -h
+#time ./astar -d -BAY -h
 #echo BAY distance array:
-#time ./dijkstra -d -BAY -v
+#time ./astar -d -BAY -v
 #echo
 #echo COL distance heap:
-#time ./dijkstra -d -COL -h
+#time ./astar -d -COL -h
 #echo COL distance array:
-#time ./dijkstra -d -COL -v
+#time ./astar -d -COL -v
 #echo
 #echo FLA distance heap:
-#time ./dijkstra -d -FLA -h
+#time ./astar -d -FLA -h
 #echo FLA distance array:
-#time ./dijkstra -d -FLA -v
+#time ./astar -d -FLA -v
 #echo COL distance:
-#time ./dijkstra -d -COL -l
+#time ./astar -d -COL -l
 #echo FLA distance:
-#time ./dijkstra -d -FLA -l
+#time ./astar -d -FLA -l
 #echo BAY distance:
-#time ./dijkstra -d -BAY -l
+#time ./astar -d -BAY -l
 #echo NY timeTravel:
-#time ./dijkstra -t -NY -l
+#time ./astar -t -NY -l
 #echo COL timeTravel:
-#time ./dijkstra -t -COL -l
+#time ./astar -t -COL -l
 #echo FLA timeTravel:
-#time ./dijkstra -t -FLA -l
+#time ./astar -t -FLA -l
 #echo BAY timeTravel:
-#time ./dijkstra -t -BAY -l
+#time ./astar -t -BAY -l

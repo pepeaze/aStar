@@ -161,7 +161,7 @@ void save_visited_coordinates_file(t_graph_info a_star_results, t_coords *coords
 
 }
 
-void save_path_coordinates_file(t_graph_info a_star_results, t_coords *coords, int graph_size, int src, int path){
+void save_path_coordinates_file(t_graph_info a_star_results, t_coords *coords, int graph_size, int src, int path, int *path_size){
     FILE *f;
     if(path == 0)
         strcat(path_coordinates_folder, ".1");
@@ -176,12 +176,14 @@ void save_path_coordinates_file(t_graph_info a_star_results, t_coords *coords, i
         fprintf(f,"%c %d %d %d\n",coords[a_star_results.closed_set[i]].v, coords[a_star_results.closed_set[i]].vertex, coords[a_star_results.closed_set[i]].x, coords[a_star_results.closed_set[i]].y);
 
     }*/
+    int cont= 0;
     while(i != 0){
        // printf("path: %d", i+1); getchar();
         fprintf(f,"%c %d %d %d\n",coords[i].v, coords[i].vertex, coords[i].x, coords[i].y);
         i = a_star_results.anterior[i];
+        cont++;
     }
-    fprintf(f,"%c %d %d %d\n",coords[i].v, coords[i].vertex, coords[i].x, coords[i].y);
+    *path_size = cont;
     //printf("path: %d", i+1); getchar();
     fclose(f);
 }
@@ -221,7 +223,6 @@ int main(int argc, char **argv){
 
     readParameters(argc, argv);
     int graph_size;
-    int path_size;
 
     t_graph **adjacent_list;
     t_path *path;
@@ -260,74 +261,21 @@ int main(int argc, char **argv){
 
 
     if(strcmp(data_structure_type, "-v") == 0){
-        printf("aStar List!\n");
-        /*if(strcmp(argv[2], "-RO") == 0){
-            int j;
-            distance_matrix = alloc_matrix(graph_size);
-            anterior_matrix = alloc_matrix(graph_size);
-            clock_t begin = clock();
-            for(i=0;i<graph_size;i++){
-                dijkstra_results = dijkstra_array (adjacent_list, graph_size, i, i, argv);
-                for(j=0; j<graph_size; j++){
-                    distance_matrix[i][j] = dijkstra_results.distancia[j];
-                    anterior_matrix[i][j] = dijkstra_results.anterior[j];
-                }
-            }
-            clock_t end = clock();
-            double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-            show_time_spent(time_spent);
-            save_distance_and_anterior_file(distance_matrix, anterior_matrix, graph_size);
-        }*/
+        //printf("aStar List!\n");
 
-        for(i=0;i<1;i++){
+        for(i=0;i<3;i++){
             clock_t begin = clock();
             a_star_results = a_star (adjacent_list, coords, graph_size, path[i].src, path[i].dest);
             clock_t end = clock();
             double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
             //printf("Distance from %d to %d vertex: %d\n", path[i].src+1, path[i].dest+1,dijkstra_results.distancia[path[i].dest]);
             show_time_spent(time_spent);
+            int path_size;
             if(strcmp(argv[2], "-RO") != 0){
                     save_visited_coordinates_file(a_star_results,coords,graph_size, i);
-                    save_path_coordinates_file(a_star_results,coords,graph_size, path[i].dest, i);
+                    save_path_coordinates_file(a_star_results,coords,graph_size, path[i].dest, i, &path_size);
                 }
+            printf("Path %d\tClosedSet Size: %d, Path Size: %d\n\n", i,a_star_results.closed_set_size, path_size);
         }
-
-
     }
-
-    /*if(strcmp(data_structure_type, "-h") == 0){
-        printf("dijkstra_heap\n");
-        for(i=0;i<3;i++){
-            clock_t begin = clock();
-            dijkstra_results = dijkstra_heap (adjacent_list, graph_size, path[i].src, path[i].dest);
-            clock_t end = clock();
-            double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-            printf("Distance from %d to %d vertex: %d\n", path[i].src+1, path[i].dest+1,dijkstra_results.distancia[path[i].dest]);
-            show_time_spent(time_spent);
-            //if(strcmp(argv[2], "-RO") != 0 && strcmp(argv[2], "-TES") != 0){
-            //    save_visited_coordinates_file(dijkstra_results,coords,graph_size, i);
-            //    save_path_coordinates_file(dijkstra_results,coords,graph_size, path[i].dest, i);
-            //}
-        }
-    }*/
-
-  /*  if(strcmp(argv[2],"-TES")==0){
-        for(i=0;i<graph_size;i++){
-            printf("%d\t",dijkstra_results.anterior[i]);
-        }
-        printf("\n");
-    }*/
-
-   /*else{
-        printf("Distance from 1 to %d vertex:\n", 50);
-        for(i=0;i<50;i++){
-            printf("%d\t",dijkstra_results.distancia[i]);
-        }
-        printf("\n");
-        printf("Distance from 1 to %d vertex: %d\n", 50,dijkstra_results.distancia[50-1]);
-    }*/
-
-
-
-
 }

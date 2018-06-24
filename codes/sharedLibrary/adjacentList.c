@@ -51,8 +51,6 @@ t_graph **get_adjacent_list(t_graph ** adjacent_list, int graph_size, FILE *f, c
         }
     }
 
-    printf("done!\n");
-
     return adjacent_list;
 }
 
