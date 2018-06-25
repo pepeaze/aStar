@@ -26,22 +26,8 @@ struct type_path{
     int dest;
 };
 
-struct t_open_set{
-    int vertex_id;
-    int cost;
-    float f_score;
-};
-
-typedef struct t_open_set t_o_set;
-
-struct t_lista{
-    t_o_set node;
-    struct t_lista *prox;
-};
-
-typedef struct t_lista t_l;
-
 typedef struct{
+    int *g_score;
     int *distancia;
     int *anterior;
     int *closed_set;

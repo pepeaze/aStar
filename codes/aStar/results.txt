@@ -1,0 +1,122 @@
+NY distance:
+Graph Vertexes: 264346
+Distance from 1 to 264314 vertex: 359425
+Time spent: 2.439053 secs
+Path 0	ClosedSet Size: 5052, Path Size: 193
+
+Distance from 1 to 225019 vertex: 720000
+Time spent: 19.758425 secs
+Path 1	ClosedSet Size: 37773, Path Size: 296
+
+Distance from 1 to 90644 vertex: 1440241
+Time spent: 2 mins 4 secs
+Path 2	ClosedSet Size: 227394, Path Size: 1177
+
+
+NY time:
+Graph Vertexes: 264346
+Distance from 1 to 262761 vertex: 477526
+Time spent: 4.452144 secs
+Path 0	ClosedSet Size: 8775, Path Size: 120
+
+Distance from 1 to 222033 vertex: 957198
+Time spent: 24.331446 secs
+Path 1	ClosedSet Size: 47508, Path Size: 601
+
+Distance from 1 to 90644 vertex: 1916421
+Time spent: 2 mins 22 secs
+Path 2	ClosedSet Size: 257192, Path Size: 868
+
+
+
+BAY distance:
+Graph Vertexes: 321270
+Distance from 1 to 260767 vertex: 539988
+Time spent: 7.880463 secs
+Path 0	ClosedSet Size: 13255, Path Size: 266
+
+Distance from 1 to 318362 vertex: 1082034
+Time spent: 13.714267 secs
+Path 1	ClosedSet Size: 21707, Path Size: 301
+
+Distance from 1 to 98763 vertex: 2166010
+Time spent: 1 mins 23 secs
+Path 2	ClosedSet Size: 133384, Path Size: 946
+
+
+BAY time:
+Graph Vertexes: 321270
+Distance from 1 to 258805 vertex: 866301
+Time spent: 15.978120 secs
+Path 0	ClosedSet Size: 26588, Path Size: 303
+
+Distance from 1 to 320390 vertex: 1737617
+Time spent: 36.576766 secs
+Path 1	ClosedSet Size: 55227, Path Size: 512
+
+Distance from 1 to 98813 vertex: 3480192
+Time spent: 3 mins 2 secs
+Path 2	ClosedSet Size: 277606, Path Size: 748
+
+
+
+COL distance:
+Graph Vertexes: 435666
+Distance from 1 to 402948 vertex: 1804450
+Time spent: 46.389371 secs
+Path 0	ClosedSet Size: 54803, Path Size: 336
+
+Distance from 1 to 382913 vertex: 3619937
+Time spent: 2 mins 22 secs
+Path 1	ClosedSet Size: 150916, Path Size: 826
+
+Distance from 1 to 316378 vertex: 7246883
+Time spent: 5 mins 30 secs
+Path 2	ClosedSet Size: 382520, Path Size: 1753
+
+
+COL time:
+Graph Vertexes: 435666
+Distance from 1 to 434170 vertex: 2694987
+Time spent: 6.137531 secs
+Path 0	ClosedSet Size: 7391, Path Size: 331
+
+Distance from 1 to 194411 vertex: 5483285
+Time spent: 3 mins 17 secs
+Path 1	ClosedSet Size: 228885, Path Size: 1084
+
+Distance from 1 to 316378 vertex: 10935293
+Time spent: 6 mins 17 secs
+Path 2	ClosedSet Size: 429589, Path Size: 2020
+
+
+
+FLA distance:
+Graph Vertexes: 1070376
+Distance from 1 to 279201 vertex: 2908133
+Time spent: 25.658835 secs
+Path 0	ClosedSet Size: 13309, Path Size: 766
+
+Distance from 1 to 1045674 vertex: 5830874
+Time spent: 6 mins 14 secs
+Path 1	ClosedSet Size: 186903, Path Size: 1356
+
+Distance from 1 to 634662 vertex: 11674195
+Time spent: 37 mins 37 secs
+Path 2	ClosedSet Size: 1053326, Path Size: 3529
+
+
+FLA time:
+Graph Vertexes: 1070376
+Distance from 1 to 1065120 vertex: 3417632
+Time spent: 3 mins 4 secs
+Path 0	ClosedSet Size: 87122, Path Size: 608
+
+Distance from 1 to 1039873 vertex: 6870823
+Time spent: 8 mins 32 secs
+Path 1	ClosedSet Size: 237116, Path Size: 1197
+
+Distance from 1 to 593824 vertex: 13776909
+Time spent: 39 mins 28 secs
+Path 2	ClosedSet Size: 1070313, Path Size: 2332
+

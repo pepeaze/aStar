@@ -161,7 +161,7 @@ void save_visited_coordinates_file(t_graph_info a_star_results, t_coords *coords
 
 }
 
-void save_path_coordinates_file(t_graph_info a_star_results, t_coords *coords, int graph_size, int src, int path, int *path_size){
+void save_path_coordinates_file(t_graph_info a_star_results, t_coords *coords, int graph_size, int src, int path){
     FILE *f;
     if(path == 0)
         strcat(path_coordinates_folder, ".1");
@@ -172,10 +172,6 @@ void save_path_coordinates_file(t_graph_info a_star_results, t_coords *coords, i
 
     f = fopen(path_coordinates_folder, "w");
     int i = src;
-    /*for(i=0; i<a_star_results.closed_set_size; i++){
-        fprintf(f,"%c %d %d %d\n",coords[a_star_results.closed_set[i]].v, coords[a_star_results.closed_set[i]].vertex, coords[a_star_results.closed_set[i]].x, coords[a_star_results.closed_set[i]].y);
-
-    }*/
     int cont= 0;
     while(i != 0){
        // printf("path: %d", i+1); getchar();
@@ -183,9 +179,19 @@ void save_path_coordinates_file(t_graph_info a_star_results, t_coords *coords, i
         i = a_star_results.anterior[i];
         cont++;
     }
-    *path_size = cont;
     //printf("path: %d", i+1); getchar();
     fclose(f);
+}
+
+int count_path(t_graph_info a_star_results, int src){
+    int cont = 0;
+    int i = src;
+    while(i!=0){
+        i = a_star_results.anterior[i];
+        cont++;
+    }
+    return cont;
+
 }
 
 void save_distance_and_anterior_file (int **distancia, int **anterior, int graph_size){
@@ -268,13 +274,14 @@ int main(int argc, char **argv){
             a_star_results = a_star (adjacent_list, coords, graph_size, path[i].src, path[i].dest);
             clock_t end = clock();
             double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-            //printf("Distance from %d to %d vertex: %d\n", path[i].src+1, path[i].dest+1,dijkstra_results.distancia[path[i].dest]);
+            printf("Distance from %d to %d vertex: %d\n", path[i].src+1, path[i].dest+1,a_star_results.g_score[path[i].dest]);
             show_time_spent(time_spent);
             int path_size;
             if(strcmp(argv[2], "-RO") != 0){
-                    save_visited_coordinates_file(a_star_results,coords,graph_size, i);
-                    save_path_coordinates_file(a_star_results,coords,graph_size, path[i].dest, i, &path_size);
-                }
+                //save_visited_coordinates_file(a_star_results,coords,graph_size, i);
+                //save_path_coordinates_file(a_star_results,coords,graph_size, path[i].dest, i);
+            }
+            path_size = count_path(a_star_results, path[i].dest);
             printf("Path %d\tClosedSet Size: %d, Path Size: %d\n\n", i,a_star_results.closed_set_size, path_size);
         }
     }

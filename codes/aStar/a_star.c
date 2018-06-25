@@ -54,14 +54,13 @@ t_graph_info a_star(t_graph** adjacent_list, t_coords *coords, int graph_size, i
     r.closed_set = NULL;
     int current, i;
     int *is_in_open_set;
-    int *g_score;
     float *f_score;
     int menor = INT_MAX;
     int iter = 0;
     int inf = INT_MAX;
     r.fechado = alloc_array(graph_size);
     r.anterior = alloc_array(graph_size);
-    g_score = alloc_array(graph_size);
+    r.g_score = alloc_array(graph_size);
     f_score = alloc_array_float(graph_size);
     r.closed_set = alloc_array(graph_size);
     r.closed_set_size = 0;
@@ -70,9 +69,9 @@ t_graph_info a_star(t_graph** adjacent_list, t_coords *coords, int graph_size, i
     is_in_open_set = alloc_array(graph_size);
     for(i = 0; i<graph_size; i++){
         if(i == vertex_ini)
-            g_score[i] = 0;
+            r.g_score[i] = 0;
         else
-            g_score[i] = inf;
+            r.g_score[i] = inf;
     }
 
     for(i = 0; i<graph_size; i++){
@@ -119,14 +118,14 @@ t_graph_info a_star(t_graph** adjacent_list, t_coords *coords, int graph_size, i
             }
 
             int tentative_g_score = 0;
-            tentative_g_score = g_score[current]+p->cost;
-            if(tentative_g_score >= g_score[p->vertex])
+            tentative_g_score = r.g_score[current]+p->cost;
+            if(tentative_g_score >= r.g_score[p->vertex])
                 continue;
 
             r.anterior[p->vertex] = current;
             //printf("anterior: %d", r.anterior[p->vertex]);getchar();
-            g_score[p->vertex] = tentative_g_score;
-            f_score[p->vertex] = g_score[p->vertex] + h_n_eucl(p->vertex, vertex_end, coords);
+            r.g_score[p->vertex] = tentative_g_score;
+            f_score[p->vertex] = r.g_score[p->vertex] + h_n_eucl(p->vertex, vertex_end, coords);
         }
         menor = inf;
     }
