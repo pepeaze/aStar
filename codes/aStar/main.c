@@ -269,7 +269,7 @@ int main(int argc, char **argv){
     if(strcmp(data_structure_type, "-v") == 0){
         //printf("aStar List!\n");
 
-        for(i=0;i<3;i++){
+        for(i=0;i<1;i++){
             clock_t begin = clock();
             a_star_results = a_star (adjacent_list, coords, graph_size, path[i].src, path[i].dest);
             clock_t end = clock();
@@ -278,8 +278,8 @@ int main(int argc, char **argv){
             show_time_spent(time_spent);
             int path_size;
             if(strcmp(argv[2], "-RO") != 0){
-                //save_visited_coordinates_file(a_star_results,coords,graph_size, i);
-                //save_path_coordinates_file(a_star_results,coords,graph_size, path[i].dest, i);
+                save_visited_coordinates_file(a_star_results,coords,graph_size, i);
+                save_path_coordinates_file(a_star_results,coords,graph_size, path[i].dest, i);
             }
             path_size = count_path(a_star_results, path[i].dest);
             printf("Path %d\tClosedSet Size: %d, Path Size: %d\n\n", i,a_star_results.closed_set_size, path_size);

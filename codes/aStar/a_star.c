@@ -50,6 +50,7 @@ float h_n_eucl (int vertex_id, int vertex_end, t_coords *coords){
 
 t_graph_info a_star(t_graph** adjacent_list, t_coords *coords, int graph_size, int vertex_ini, int vertex_end){
     t_graph_info r;
+    int fechado = 0;
     r.path_g_n = 0;
     r.closed_set = NULL;
     int current, i;
@@ -96,6 +97,7 @@ t_graph_info a_star(t_graph** adjacent_list, t_coords *coords, int graph_size, i
     r = add_vertex_to_open_set(r, vertex_ini);
     r.anterior[vertex_ini] = 0;
 
+    //while (fechado != graph_size){
     while (current != vertex_end){
         for(i=0; i<graph_size;i++){
             if(menor>f_score[i] && r.fechado[i] != 1){
@@ -104,6 +106,7 @@ t_graph_info a_star(t_graph** adjacent_list, t_coords *coords, int graph_size, i
             }
         }
         r.fechado[current] = 1;
+        fechado++;
         r.open_set[current] = inf;
         r = add_vertex_to_closed_set(r, current);
         t_graph* p;
